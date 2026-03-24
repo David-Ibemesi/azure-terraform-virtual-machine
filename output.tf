@@ -7,3 +7,11 @@ output "vm_sku" {
   value = azurerm_linux_virtual_machine.mynova_vm.source_image_reference
   description = "This shows the details of the virtual machine used."
 }
+
+output "vm_username" {
+  value = azurerm_linux_virtual_machine.mynova_vm.admin_username
+}
+
+output "vm_userdetails" {
+  value = azurerm_linux_virtual_machine.mynova_vm.user_data
+}
