@@ -1,30 +1,30 @@
 # Create resource group
 resource "azurerm_resource_group" "mynova_rg" {
-  name     = "mynova_rg"
-  location = "Canada Central"
+  name     = var.azurerm_resource_group_name
+  location = var.azurerm_resource_group_location
 }
 
 # Create virtual network
 resource "azurerm_virtual_network" "mynova_vnet" {
   resource_group_name = azurerm_resource_group.mynova_rg.name
   location            = azurerm_resource_group.mynova_rg.location
-  name                = "mynova_vnet"
-  address_space       = ["10.0.0.0/16"]
+  name                = var.azurerm_virtual_network_name
+  address_space       = [var.azurerm_virtual_network_address_space]
 }
 
 # Create subnet
 resource "azurerm_subnet" "mynova_subnet" {
   resource_group_name  = azurerm_resource_group.mynova_rg.name
   virtual_network_name = azurerm_virtual_network.mynova_vnet.name
-  name                 = "mynova_subnet"
-  address_prefixes     = ["10.0.1.0/24"]
+  name                 = var.azurerm_subnet_name
+  address_prefixes     = [var.azurerm_subnet_address_prefixes]
 }
 
 # Create network security group and allow ssh
 resource "azurerm_network_security_group" "mynova_nsg" {
   resource_group_name = azurerm_resource_group.mynova_rg.name
   location            = azurerm_resource_group.mynova_rg.location
-  name                = "mynova_nsg"
+  name                = var.azurerm_network_security_group_name
 
   security_rule {
     name                       = "AllowSSH"
@@ -43,15 +43,15 @@ resource "azurerm_network_security_group" "mynova_nsg" {
 resource "azurerm_public_ip" "mynova_public_ip" {
   resource_group_name = azurerm_resource_group.mynova_rg.name
   location            = azurerm_resource_group.mynova_rg.location
-  name                = "mynova_public_ip"
-  allocation_method   = "Static"
+  name                = var.azurerm_public_ip_name
+  allocation_method   = var.azurerm_public_ip_allocation_method
 }
 
 # Create network interface
 resource "azurerm_network_interface" "mynova_nic" {
   resource_group_name = azurerm_resource_group.mynova_rg.name
   location            = azurerm_resource_group.mynova_rg.location
-  name                = "mynova_nic"
+  name                = var.azurerm_network_interface_name
 
   ip_configuration {
     name                          = "mynova_ip_config"
@@ -71,10 +71,10 @@ resource "azurerm_network_interface_security_group_association" "mynova_nic_nsg_
 resource "azurerm_linux_virtual_machine" "mynova_vm" {
   resource_group_name = azurerm_resource_group.mynova_rg.name
   location            = azurerm_resource_group.mynova_rg.location
-  name                = "mynova_vm"
-  size                = "Standard_B1s"
-  admin_username      = "azureuser"
-  admin_password      = "P@ssw0rd1234!"
+  name                = var.azurerm_linux_virtual_machine_name
+  size                = var.azurerm_linux_virtual_machine_size
+  admin_username      = var.azurerm_linux_virtual_machine_admin_username
+  admin_password      = var.azurerm_linux_virtual_machine_admin_password
   network_interface_ids = [
     azurerm_network_interface.mynova_nic.id,
   ]

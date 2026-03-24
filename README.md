@@ -13,7 +13,7 @@ root-
   |-output.tf  (specifies the information to be shown when resources are deployed)
   |-provider.tf  (shows which cloud provider should be used for this project)
   |-README.md  (current file, displays basic information about the project)
-  |-terraform.tfvars  u(sed by default when deploying files, contains variable information for resources)
+  |-terraform.tfvars  (used by default when deploying files, contains variable information for resources)
   |-variable.tf  (used to store code variables and prevent hardcoding) *intentionally "variable" and not "variables" for crash test*
 
 
