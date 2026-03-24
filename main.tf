@@ -2,6 +2,12 @@
 resource "azurerm_resource_group" "mynova_rg" {
   name     = var.azurerm_resource_group_name
   location = var.azurerm_resource_group_location
+
+  tags = {
+    Environment = var.environment
+    Project     = "Terraform Learning"
+    Owner       = "Student"
+  }
 }
 
 # Create virtual network
@@ -34,8 +40,13 @@ resource "azurerm_network_security_group" "mynova_nsg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "*"
+    source_address_prefixes    = var.allowed_ssh_ips
     destination_address_prefix = "*"
+  }
+
+  tags = {
+    Environment = var.environment
+    Project     = "Terraform Learning"
   }
 }
 
@@ -90,6 +101,12 @@ resource "azurerm_linux_virtual_machine" "mynova_vm" {
     offer     = "0001-com-ubuntu-server-jammy"
     sku       = "22_04-lts"
     version   = "latest"
+  }
+
+  tags = {
+    Environment = var.environment
+    Project     = "Terraform Learning"
+    OS          = "Ubuntu 22.04"
   }
 }
 

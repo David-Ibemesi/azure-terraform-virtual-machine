@@ -1,6 +1,6 @@
 variable "azurerm_resource_group_name" {
   description = "The name of the resource group in which to create the resources."
-  type        = string 
+  type        = string
   default     = "mynova_rg"
 }
 
@@ -38,7 +38,7 @@ variable "azurerm_network_security_group_name" {
   description = "The name of the network security group where resources would be procured."
   type        = string
   default     = "mynova_nsg"
-}  
+}
 
 variable "azurerm_public_ip_name" {
   description = "The name of the public IP where resources would be procured."
@@ -47,9 +47,9 @@ variable "azurerm_public_ip_name" {
 }
 
 variable "azurerm_public_ip_allocation_method" {
-    description = "The type of public IP to be procured."
-    type        = string
-    default     = "Static"
+  description = "The type of public IP to be procured."
+  type        = string
+  default     = "Static"
 }
 
 variable "azurerm_network_interface_name" {
@@ -79,6 +79,22 @@ variable "azurerm_linux_virtual_machine_admin_username" {
 variable "azurerm_linux_virtual_machine_admin_password" {
   description = "The secret key to log into the virtual machine with ssh"
   type        = string
-  sensitive   =  true
+  sensitive   = true
+  validation {
+    condition     = length(var.azurerm_linux_virtual_machine_admin_password) >= 8
+    error_message = "Password must be at least 8 characters long."
+  }
+}
+
+variable "allowed_ssh_ips" {
+  description = "List of IP addresses or CIDR blocks allowed to SSH into the VM"
+  type        = list(string)
+  default     = ["0.0.0.0/0"] # WARNING: Allows from anywhere - restrict in production!
+}
+
+variable "environment" {
+  description = "Environment name for tagging resources"
+  type        = string
+  default     = "dev"
 }
 

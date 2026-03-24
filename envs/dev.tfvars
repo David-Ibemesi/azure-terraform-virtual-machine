@@ -12,3 +12,5 @@ azurerm_network_interface_name = "mynova_nic_dev"
 azurerm_linux_virtual_machine_name = "mynova_vm_dev"
 azurerm_linux_virtual_machine_size = "Standard_B2ats_v2"
 azurerm_linux_virtual_machine_admin_username = "azureuserdev"
+allowed_ssh_ips = ["0.0.0.0/0"]  # Restrict to your IP in production
+environment = "dev"

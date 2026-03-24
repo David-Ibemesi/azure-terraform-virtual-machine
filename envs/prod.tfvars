@@ -12,3 +12,5 @@ azurerm_network_interface_name = "mynova_nic_prod"
 azurerm_linux_virtual_machine_name = "mynova_vm_prod"
 azurerm_linux_virtual_machine_size = "Standard_B2ats_v2"
 azurerm_linux_virtual_machine_admin_username = "azureuserprod"
+allowed_ssh_ips = ["YOUR_PUBLIC_IP/32"]  # Replace with your actual IP for security
+environment = "prod"
