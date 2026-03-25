@@ -108,7 +108,8 @@ terraform init
 
 **3. Plan Deployment**
 
-For development environment:
+For development environment: 
+Note that if the -var flag is not given, the password can be securely entered once the command is run.
 ```bash
 terraform plan -var-file="envs/dev.tfvars" -var="azurerm_linux_virtual_machine_admin_password=YourSecurePassword123!"
 ```
@@ -147,6 +148,7 @@ ssh azureuser@<vm_public_ip>
 **7. Cleanup**
 
 To destroy all resources:
+Note that the -var value for the password is unimportant at this point, any value could be put in, but Azure would require "admin_password" has to fulfill 3 out of these 4 conditions: Has lower characters, Has upper characters, Has a digit, Has a special character other than "_"
 ```bash
 terraform destroy -var-file="envs/dev.tfvars" -var="azurerm_linux_virtual_machine_admin_password=YourSecurePassword123!"
 ```
