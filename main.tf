@@ -56,6 +56,7 @@ resource "azurerm_public_ip" "mynova_public_ip" {
   location            = azurerm_resource_group.mynova_rg.location
   name                = var.azurerm_public_ip_name
   allocation_method   = var.azurerm_public_ip_allocation_method
+  sku                 = "Standard"
 }
 
 # Create network interface
