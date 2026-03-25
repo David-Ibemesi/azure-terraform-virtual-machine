@@ -15,7 +15,7 @@ root/
 ├── provider.tf        # Azure provider configuration and requirements
 ├── README.md          # This documentation file
 ├── terraform.tfvars   # Default variable values (can be overridden)
-└── variable.tf        # Variable declarations with defaults and descriptions
+└── variable.tf        # Variable declarations with defaults and descriptions (intentionally "variable.tf" not "variables.tf" to test usage)
 ```
 
 
