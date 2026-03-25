@@ -19,7 +19,7 @@ variable "azurerm_virtual_network_name" {
 variable "azurerm_virtual_network_address_space" {
   description = "This is the CIDR block which the virtual network posseses."
   type        = string
-  default     = "10.0.0.0/24"
+  default     = "10.0.0.0/16"
 }
 
 variable "azurerm_subnet_name" {
@@ -61,7 +61,7 @@ variable "azurerm_network_interface_name" {
 variable "azurerm_linux_virtual_machine_name" {
   description = "The name of the Linux virtual machine where resources would be procured."
   type        = string
-  default     = "mynova_vm"
+  default     = "mynovavm"
 }
 
 variable "azurerm_linux_virtual_machine_size" {
