@@ -76,7 +76,7 @@ All configuration values are parameterized to avoid hardcoding:
 | `azurerm_resource_group_name` | Resource group identifier | `mynova_rg` | Yes |
 | `azurerm_resource_group_location` | Azure region | `Canada Central` | Yes |
 | `azurerm_virtual_network_name` | VNET name | `mynova_vnet` | Yes |
-| `azurerm_virtual_network_address_space` | VNET CIDR | `10.0.0.0/24` | Yes |
+| `azurerm_virtual_network_address_space` | VNET CIDR | `10.0.0.0/16` | Yes |
 | `azurerm_subnet_name` | Subnet name | `mynova_subnet` | Yes |
 | `azurerm_subnet_address_prefixes` | Subnet CIDR | `10.0.1.0/24` | Yes |
 | `azurerm_network_security_group_name` | NSG name | `mynova_nsg` | Yes |
